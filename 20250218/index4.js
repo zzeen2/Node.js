@@ -17,7 +17,7 @@ const http = require(`http`)
 const server = http.createServer((req, res) => { //(요청, 응답)
     // 매개변수의 순서로는 첫번째가 요청의 객체 
     // 두번째 매개변수는 응답의 객체 
-    res.end("안녕") // end 응답을 주고 종료
+    res.end("server") // end 응답을 주고 종료
 })
 
 // 시스템 예약 포트 외의 
@@ -25,7 +25,6 @@ const server = http.createServer((req, res) => { //(요청, 응답)
 
 const PORT = 3000
 // 개발할때 많이 사용하는 포트번호는 3000, 8000, 8080
-// 마블 아이언맨 
 
 // 서버 대기상태 , 이벤트가 발생할때까지 기다리겠다.
 server.listen(PORT, () => {
