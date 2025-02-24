@@ -1,0 +1,9 @@
+*{
+    background-color: blanchedalmond;
+}
+
+body > button {
+    background-color: blueviolet;
+    color: white;
+}
+

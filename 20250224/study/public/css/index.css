@@ -1,0 +1,9 @@
+*{
+    background-color: beige;
+}
+
+#login_btn {
+    cursor: pointer;
+    background-color: blue;
+    color: aqua;
+}
