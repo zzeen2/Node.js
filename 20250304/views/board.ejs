@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="display:flex ; flex-direction: column;">
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="">제목</label>
+        <input type="text" name="title">
+
+        <label for="">내용</label>
+        <input type="text" name="content">
+        
+        <label for="">이미지파일</label>
+        <input type="file" name = "myimage"> 
+        <!-- name = "myimage"로 하는 이유는 Multer쪽에서 전달된 키를 찾기 때문에 -->
+
+         <button>이미지 업로드</button>
+    </form>
+</body>
+</html>

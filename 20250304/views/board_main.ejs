@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    메인페이지
+    <h1>게시글 목록</h1>
+    <ul>
+        <% for(let i = 0; i <board.length; i++ ) { %>
+            <a href="/detail?index=<%= i %>" + i>
+                <li> 
+                    <span><%= board[i].title %></span>
+                    <span><%= board[i].content %></span> 
+                    <span><img src="<%= board[i].imgPath %>" alt=""></span>
+                </li>
+            </a>
+        <% } %>
+    </ul>
+</body>
+</html>
