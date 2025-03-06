@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인페이지</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    <h1>Board</h1>
+    <h3>게시글 목록</h3>
+    <form action="/write" method="get">
+        <button>글작성 페이지로</button>
+    </form>
+    <ul>
+        <% for(i=0; i<datas.length; i++){ %>
+            <a href="/detail?index=<%= i %>">
+                <li>
+                    <span><%= datas[i].title %></span>
+                    <span><%= datas[i].content %></span>
+                    <span><img src="<%= datas[i].imgPath %>" alt="이미지"></span>
+                </li>
+            </a>
+        <% } %>
+    </ul>
+
+</body>
+</html>

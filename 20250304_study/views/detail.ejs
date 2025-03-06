@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>상세페이지</h1>
+    <button onclick="gotoEdit('<%= index %>')">수정하기</button>
+    <button onclick="gotoDelete('<%= index %>')">삭제하기</button>
+    <h3>제목</h3>
+    <%= data.title %>
+    <h3>내용</h3>
+    <%= data.content %>
+    <img src="<%= data.imgPath %>" alt="" style="width: 100px;">
+
+</body>
+<script>
+    const gotoEdit = (index) => {
+        location.href = `/edit?index=${index}`;
+    }
+    const gotoDelete = (index) => {
+        location.href = `/delete?index=${index}`;
+    }
+</script>
+</html>

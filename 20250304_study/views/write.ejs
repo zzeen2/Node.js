@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>글 작성 페이지</h1>
+    <form action="/write" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="">제목</label>
+            <input type="text" name = "title">
+    
+            <label for="">내용</label>
+            <input type="text" name="content">
+            
+            <label for="">이미지</label>
+            <input type="file" name = "myimage">
+        </div>
+        
+        <button style="margin-top: 20px;">업로드</button>
+    </form>
+</body>
+</html>
