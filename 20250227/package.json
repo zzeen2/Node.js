@@ -1,0 +1,16 @@
+{
+  "name": "20250227",
+  "version": "1.0.0",
+  "description": "> 템플릿엔진은 서버에서 html을 동적으로 만들어서 브라우저에게 응답을 보내 페이지를 렌더링 하는 도구",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  }
+}

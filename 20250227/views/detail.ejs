@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>글 번호 : <%= index %></div>
+    <div>제목 : <%= title %></div>
+    <div>내용 : <%= content %></div>
+    <button onclick="delete_btn('<%= index %>')">삭제</button>
+    <button onclick="gotoedit('<%= index %>')">수정</button>
+</body> 
+<script>
+    const delete_btn = (index) => {
+        location.href = `/delete?index=${index}`;
+    }
+
+const gotoedit = (index) => {
+    const url = `/edit?index=${index}`;
+    console.log("이동할 URL:", url);
+    location.href = url;
+}
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const arr1 = [[1,2],
+               [2,4]]
+    const arr2 = [[1,0],
+              [0,3]]
+
+    function matrixMultiple (arr1, arr2) {
+        if (arr1[0].length !== arr2.length) { // 행 * 열
+            return -1;
+        }
+
+        const initArr = new Array(arr1[0].length)
+        
+        for (let i = 0; i < arr1[0].length; i++) {
+            initArr[i] = new Array
+            for (let j = 0; j < arr2.length; j++) {
+                let a = arr1[i][j] * arr2[j][i]
+                let b = arr1[i][j]
+                console.log(arr1[i][j])
+                initArr[i].push(a)
+                //console.log(initArr)
+                // const result = initArr[i][j].push[a]
+            }  
+        } 
+
+        console.dir(initArr)//>[[],[]]
+    }
+    matrixMultiple(arr1,arr2);
+</script>
+</html> 

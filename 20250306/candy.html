@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+function candy() {
+    const input = prompt("점수를 공백으로 구분하여 입력하세요");
+    const score = input.split(" ");
+    const Arr = [];
+
+    // 정수 변환
+    for (let i = 0; i < score.length; i++) {
+        const newScore = parseInt(score[i]);
+        Arr.push(newScore);
+    }
+    console.log(Arr); 
+
+    // 내림차순 정렬
+    Arr.sort(function(a, b) {
+        if (a > b) return -1;
+        if (a === b) return 0;
+        if (a < b) return 1;
+    });
+    console.log(Arr);
+
+    let people = 0;
+    let rank = 1;
+    
+    for (let i = 0; i < Arr.length; i++) {
+        if (rank < 4) {
+            if (Arr[i] === Arr[i - 1]) { 
+                people += 1;
+            } else {
+                people += 1;
+                rank += 1;
+            }
+        } else {
+            break;
+        }
+    }
+    
+    alert(`사탕을 받을 학생 수: ${people}`);
+}   
+</script>
+</html>

@@ -1,10 +1,11 @@
 
 const express = require("express");
 const app = express();
-const boardRouter = require("./routers/board.router");
+app.set("view engine", "ejs")
 const path = require("path");
 
-app.set("view engine", "ejs")
+const boardRouter = require("./routers/board.router"); //라우터 가져오기
+
 
 app.use('/public', express.static(path.join(__dirname, "public")))
 app.use('/image', express.static(path.join(__dirname, "upload")))

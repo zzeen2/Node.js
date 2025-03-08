@@ -3,7 +3,9 @@
 }
 
 body > button {
+    display: block;
     background-color: blueviolet;
     color: white;
+    align-items: center;
 }
 

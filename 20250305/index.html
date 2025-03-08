@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id ="content"></div>
+    <button onclick ="submitHendler()">요청 보내기</button>
+</body>
+<script>
+const submitHendler=() => {
+
+    let xhr = new XMLHttpRequest(); // 내장 객체 불러오기
+    
+    // 요청을 보내는 코드 (메서드 호출)
+    xhr.open("GET", "/")
+    
+    // 요청이 완료가 되면 
+    // 응답을 받는 상태가 되면 호출되는 이벤트
+    xhr.onreadystatechange=()=>{
+        // 완료가 되었을떄 완료 완료된 상태를 확인하고 
+        // xml객체의 상태가 완료 상태인지 확인하고
+        if((xhr.readyState === 4) && (xhr.statue === 200) ){
+            const data = JSON.parse(xhr.responseText);
+            console.log(data)
+            for (let i = 0; i < data.length; i++) {
+                const span1 = document.createElement("span")
+                const span2 = document.createElement("span")
+                const span3 = document.createElement("span")
+                span1.append(span2, span3)
+                span2.innerHTML = data[i].title;
+                span3.innerHTML = data[i].content;
+                content.append(span1)
+            }
+        }
+        // 응답이 완료되면 처리할 로직
+    }
+    // 요청 어디로? xhr.open("GET", "http://127.0.0.1:3000/board") << 여기로
+    xhr.send()
+}
+</script>
+</html>

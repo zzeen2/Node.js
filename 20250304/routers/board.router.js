@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const {upload} = require('../lib/image.upload')
 const {createBoard, selectBoardAll, selectBoardIndex} = require('../controllers/board.controller');
-const { create } = require("../models/\bboard");
+const { create } = require("../models/board");
 
 // 게시글 추가
 router.get('/', (req,res)=> {

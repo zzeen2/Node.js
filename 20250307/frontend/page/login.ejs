@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>로그인 페이지</h1>
+    <form id="login_form" action="http://127.0.0.1:4000/login" method="post">
+        <label for="">아이디</label>
+        <input type="text" name="uid">
+        <label for="">비밀번호</label>
+        <input type="text" name="upw">
+        <button>로그인</button>
+    </form>
+</body>
+<script>
+    const submitHendler = async (e) => {
+        console.log(e);
+        e.preventDefault();
+        const {uid : {value : uidValue}, upw : {value : upwValue}} = e.target;
+        // withCredentials 브라우저의 쿠키값을 요청보낼때 포함 시킬지
+        // 응답 헤더에 쿠키의 값이 있으면 브라우저에 쿠키 추가
+        // withCredentials 요청 헤더에 credentials가 포함된다.
+        const data =  await axios.post('http://127.0.0.1:3000/login', {uid : uidValue, upw : upwValue}, { withCredentials : true });
+        console.log(data); // 로그인 성공
+        if(data === "로그인 성공"){
+            
+        }
+        console.log("응답 완료");
+    }
+
+    login_form.onsubmit = submitHendler;
+</script>
+</html>

@@ -22,15 +22,6 @@ app.get('/login', (req,res)=> {
     })
 })
 
-// app.get('/', (req,res)=> {
-//     const filePath = path.join(__dirname, "views", "login.html")
-//     console.log(filePath);
-//     fs.readFile(filePath, "utf8", (err,data)=> {
-//         if (err) return res.send("404 not exsist page")
-//         res.send(data);
-//     })
-// })
-
 app.listen(PORT, () => {
     console.log("server on~")
 })

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="./login.css">
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        display: flex;
+        background-color: rgb(205, 205, 205);
+        justify-content: center;
+    }
+    .login-box{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+        height: fit-content;
+        background-color: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 1px 3px 3px 3px #bdbdbd
+    }
+    label{
+        display: block;
+    }
+    h1{
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+    .login-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 6vh;
+        border-radius: 7px;
+        background-color: rgb(72, 186, 108);
+        color: white;
+    }
+    input{
+        width: 100%;
+        height: 5vh;
+        border: 1px rgb(164, 162, 162) solid;
+        border-radius: 0.5vh;
+        margin-bottom: 20px;
+    }
+    .items{
+        width: 100%;
+        height: 80%;
+    }
+    .input1{
+        margin-bottom: 3vh;
+    }
+</style>
+<body>
+    <div class = "login-box">
+        <h1>Login</h1>
+        <div class = "items">
+            <label for="name">너의 이름</label>
+            <input type="text" placeholder="요기에 입력">
+            <label for="pw" >비밀번호</label>
+            <input type="text" placeholder="요기에 입력">
+        </div>
+        <div class = "login-btn"><h>로그인 버튼<h></div>
+    </div>
+</body>
+</html>

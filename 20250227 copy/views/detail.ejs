@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>글 번호 : <%= index %></div>
+    <div>제목 : <%= title %></div>
+    <div>내용 : <%= content %></div>
+
+
+    <form action="/delete" method="post">
+        <input type="hidden" name="index" value="<% index %>" >
+        <button>글 삭제</button> 
+    </form>
+</body> 
+<script>
+</script>
+</html>

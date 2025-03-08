@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>메인페이지</h2>
+    <ul>
+        <% if(board.length !== 0) {%>
+            <% for(let i = 0; i < board.length; i++){ %>
+                <li style="display: flex;" onclick="detailView('<%= board[i].index %>')">
+                    <div><%= board[i].index %></div>
+                    <div><%= board[i].title %></div>
+                    <div><%= board[i].content %></div>
+                </li>
+            <% } %>    
+        <% } %>
+    </ul>
+
+    <form action="/board" method="post">  
+        <label for="">제목</label>
+        <input type="text" name = "title">
+        <label for="">내용</label>
+        <textarea name="content" id=""></textarea>
+        <button>글 추가</button>
+    </form>
+</body>
+<script>
+    const detailView = (index) => {
+        location.href = `/detail?index=${index}`
+    }
+</script>
+</html>

@@ -1,9 +1,13 @@
 *{
     background-color: beige;
 }
-
+body{
+    display: flex;
+    flex-direction: column;
+}
 #login_btn {
     cursor: pointer;
     background-color: blue;
     color: aqua;
+    align-items: center;
 }
