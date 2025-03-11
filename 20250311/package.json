@@ -1,0 +1,16 @@
+{
+  "name": "20250311",
+  "version": "1.0.0",
+  "description": "```sql\r CREATE TABLE user(\r     user_id VARCHAR(10) PRIMARY KEY,\r     user_pw VARCHAR(10),\r     user_name VARCHAR(10),\r     create_At DATETIME DEFAULT now()\r );",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mysql2": "^3.13.0"
+  }
+}

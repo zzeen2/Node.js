@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('header') %>
+    <form id="create_from">
+        <label for="">제목</label>
+        <input type="text" name="title">
+        <label for="">내용</label>
+        <textarea name="content"></textarea>
+        <button>글 추가</button>
+    </form>
+</body>
+<script>
+    create_from.onsubmit = async (e) => {
+        e.preventDefault();
+        const {
+            title : 
+            { value : titleValue },
+            content : 
+            { value : contentValue }
+        } = e.target;
+        const {data} = await axios.post("/create", { titleValue, contentValue });
+        // {state : 200, message : "글 추가 완료"}
+        if(data.state === 200) {
+            location.href = "/view";
+        }else {
+            location.href = "/error";
+        }
+    }
+</script>
+</html>
