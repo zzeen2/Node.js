@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('header') %>
+    로그인페이지
+    <form id = "login_form">
+        <label for="">아이디</label>
+        <input type="text" name = "uid">
+        <label for="">비밀번호</label>
+        <input type="text" name = "upw">
+        <button>로그인</button>
+    </form>
+
+</body>
+<script>
+    login_form.onsubmit= async(e) => {
+        e.preventDefault();
+        const {uid: {value : uidValue}, upw :{value : upwValue}} = e.target;
+        
+        const {data} = await axios.post('/login', {uid : uidValue, upw: upwValue});
+        console.log(data)
+        if (data.state === 200){
+            location.href ='/main'
+        }else if (data.state === 401){
+            alert(data.message)
+        }else if (data.state === 402){
+            alert(data.message)
+        }else{
+            alert("서버에러")
+        }
+    }
+</script>
+</html>

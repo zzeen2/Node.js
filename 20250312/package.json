@@ -1,0 +1,19 @@
+{
+  "name": "20250312",
+  "version": "1.0.0",
+  "description": "> 관계형 데이터베이스, 제약조건, 인덱싱의 개념",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "mysql2": "^3.13.0"
+  }
+}
