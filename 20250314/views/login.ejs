@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+</head>
+<body>
+    <%- include('header') %>
+    <form id = "login_form">
+        <label for="" > 아이디</label>
+        <input type="text" name="uid">
+        <label for="">비밀번호</label>
+        <input type="text" name = "upw">
+        <button>로그인</button>
+        <button type="button" id = "signup_btn">회원가입</button>
+    </form> 
+</body>
+    <script>
+        login_form.onsubmit = async (e) => {
+            e.preventDefault();
+            const {uid, upw} = e.target;
+            const uidValue = uid.value;
+            const upwValue = upw.value;
+
+            // 인풋값 서버로 보내기
+            const data = await axios.post("/login", ({uid:uidValue, upw: upwValue })) ;
+
+            if(data.data.state === 200){
+            // const data = await axios.get("/main", ({uid:uidValue, upw: upwValue }));
+            // console.log("여기야",data);
+            // console.log({uid:uidValue, upw: upwValue })
+            location.href="/main"
+            }
+        }
+        
+        document.getElementById("signup_btn").addEventListener("click", ()=>{
+            location.href="/signup"
+        })
+    </script>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 페이지</title>
+</head>
+<body>
+    <%- include('header') %>
+    <form id = "signup_form">
+        <label for="" > 아이디</label>
+        <input type="text" name="uid">
+        <label for="">비밀번호</label>
+        <input type="text" name = "upw">
+        <label for="">성함</label>
+        <input type="text" name="name">
+        <label for="">닉네임</label>
+        <input type="text" name = "nick">
+        <label for="">프로필 이미지</label>
+        <input type="file" name = "image">
+        <button>회원가입</button>
+        
+    </form>
+</body>
+<script>
+    signup_form.onsubmit = async(e) => {
+        e.preventDefault();
+        const {uid,upw,name,nick,image} = e.target;
+        const form = new FormData(); // 폼데이터 객체 생성
+        form.append("uid", uid.value);
+        form.append("upw", upw.value);
+        form.append("name", name.value);
+        form.append("nick", nick.value);
+        form.append("image", image.files[0]);
+
+        const data = await axios.post('/signup', form, {
+            headers : {
+                "Content-type" : "multipart/form-data"
+            }
+        });
+
+        /*
+        첫 번째 인자: 요청 URL ('/signup')
+        두 번째 인자: 보낼 데이터 (FormData 객체)
+        세 번째 인자: 요청 설정 객체
+        */
+
+        console.log( "data bro: ", data);
+        /*
+        {data: {…}, status: 200, statusText: 'OK', headers: r, config: {…}, …}
+        config
+        : 
+        {transitional: {…}, adapter: Array(3), transformRequest: Array(1), transformResponse: Array(1), timeout: 0, …}
+        data
+        : 
+        {state: 400, message: '중복된 아이디입니다'}
+        headers
+        : 
+        r {connection: 'keep-alive', content-length: '54', content-type: 'application/json; charset=utf-8', date: 'Fri, 14 Mar 2025 06:01:31 GMT', etag: 'W/"36-HJHI5VPYIOxQE/GKgyXiGIR7hI8"', …}
+        request
+        : 
+        XMLHttpRequest {onreadystatechange: null, readyState: 4, timeout: 0, withCredentials: false, upload: XMLHttpRequestUpload, …}
+        status
+        : 
+        200
+        statusText
+        : 
+        "OK"
+        
+        */
+        if (data.data.state === 400 ){
+            alert("중복된 아이디입니다.")
+        }else if (data.status === 200){
+            location.href = "/login"
+        }
+    }
+</script>
+</html>
