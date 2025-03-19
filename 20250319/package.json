@@ -1,0 +1,17 @@
+{
+  "name": "20250319",
+  "version": "1.0.0",
+  "description": "> 데이터의 양이 많아질수록 슬로우 쿼리가 발생하고 속도가 저하되는 현상이 발생할수 있는데, > 특정 조건에 맞는 데이터를 조회할때 조회 속도를 빠르게 최적화한다. 검색을 빠르게 할 수 있는 알고리즘을 사용할수 있는것. > 탐색의 시간복잡도가 줄어든다.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^9.6.0",
+    "stream": "^0.0.3"
+  }
+}
