@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    회원가입 페이지
+    <form id = "signup_form">
+        <label for="">이름</label>
+        <input type="text" name="name">
+        <label for="">닉네임</label>
+        <input type="text" name = "nick">
+        <button>유저등록</button>
+    </form>
+</body>
+<script>
+    signup_form.onsubmit = async(e)=> {
+        e.preventDefault();
+        const {name : {value : nameValue}, nick : {value:nickValue}} = e.target;
+        
+        const {data} = await axios.post("/user/signup", {name : nameValue, nick : nickValue})
+
+        if (data.state===200){
+            location.href = "/user/login"
+        }else{
+            alert("등록할수없습니다.")
+        }
+    }
+</script>
+</html>

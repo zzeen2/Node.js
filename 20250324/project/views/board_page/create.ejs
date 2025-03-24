@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    추가페이지
+    <form id = "board_form">
+        <label for="">내용</label>
+        <textarea name="content" id=""></textarea>
+        <label for="">이름</label>
+        <input type="text" name = "userName">
+        <button>유저등록</button>
+    </form>
+</body>
+<script>
+    board_form.onsubmit =async(e) => {
+        e.preventDefault();
+        const {content:{value : cotentValue}, userName : {value : userNameValue}} = e.target;
+
+        const {data} = await axios.post("/board/create", {content:cotentValue, user_name :userNameValue })
+
+        if(data.state ===200){
+            location.href="/board"
+        }
+    }
+</script>
+</html>

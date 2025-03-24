@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    로그인 페이지
+    <form id="login_form">
+        <label for="">이름</label>
+        <input type="text" name="name">
+        <button>유저 등록</button>
+    </form>
+</body>
+<script>
+    login_form.onsubmit = async (e) => {
+        e.preventDefault();
+        const {name : {value}} = e.target;
+        const {data} = await axios.post('/user/login', {name : value});
+        if(data.state === 200) {
+            location.href = "/board/create";
+        }
+    }
+</script>
+</html>

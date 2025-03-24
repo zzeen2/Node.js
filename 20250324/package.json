@@ -1,0 +1,18 @@
+{
+  "name": "20250324",
+  "version": "1.0.0",
+  "description": "## ORM 객체 지향 프로그래밍 > OOP에서 사용되는 객체의 프로그래밍을  관계형 데이터 베이스의 테이블과 매핑해서 이전에 SQL을 작성하는것을 하지 않고, 데이터 베이스와 상호작용을 할 수 있다. > 객체를 전달하면 우리가 원하는 형태의 SQL을 작성해서 데이터베이스와 상호작용 할 수 있다. > 필드 즉 엔티티를 정의할때 객체의 형태 필드에 저장하는 데이터의 형태를 객체로 매핑하면 데이터 관리의 가독성이 높아진다.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "mysql2": "^3.14.0",
+    "sequelize": "^6.37.6"
+  }
+}
