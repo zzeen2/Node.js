@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+</head>
+<body>
+    <%- include('../common/header') %>
+    <form id = "signup_form">
+        <label for="">아이디</label>
+        <input type="text" name ="uid">
+        <label for="">비밀번호</label>
+        <input type="text" name = "upw">
+        <label for="">이름</label>
+        <input type="text" name ="uname">
+        <button>회원가입</button>
+    </form>
+</body>
+<script>
+signup_form.onsubmit= async(e)=> {
+    // 프론트 검증 //
+    // 교차검증을 위해서 원래는 여기서 빈값체크를 하고요청을 보내야한다. >> 백엔드에서도 검증
+
+    e.preventDefault();
+    const {uid : {value : uidValue}, upw : {value : upwValue}, uname : {value : unameValue}} = e.target //{uid,upw,uname} 이벤트가 일어난 태그자체만 가져옴. 근데 value를 가져와야하니까 한번더 구조분해할당 해줘야함
+
+    console.log(uidValue,upwValue,unameValue)
+    const {data} = await axios.post("/user/signup", {uidValue, upwValue, unameValue});
+    console.log(data);
+
+    if(data.state ===200){
+        location.href ="/user/login"
+    }else if (data.state === 400){
+        alert("중복회원가입입니다.")
+    }else{
+        alert("빈값이 없게 작성해주세요")
+    }
+
+}
+</script>
+</html>
