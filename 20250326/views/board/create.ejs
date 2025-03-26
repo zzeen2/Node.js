@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 작성</title>
+</head>
+<body>
+    <%- include("../common/header") %>
+    <form id = "board_form">
+        <label for="">카테고리</label><br />
+        <select name="category" id="">
+            <% for(let i =0; i < categorys.length; i ++) { %>
+                <option value="<%= categorys[i].name %>"><%= categorys[i].name %></option>
+            <% } %>
+        <label for="">제목</label><br />
+        <input type="text" name ="title"><br />
+        <label for="">내용</label><br />
+        <textarea name="content" id=""></textarea><br />
+        <button>글작성</button>
+    </form>
+</body>
+<script>
+    board_form.onsubmit= async (e)=> {
+        e.preventDefault();
+        const {category :{value : categoryValue}, title : {value : titleValue}, content : {value : contentValue}}= e.target;
+        // console.log(categorys.value)
+        // console.log(title.value)
+        // console.log(content.value)
+        const {data} = await axios.post("/board/create", {category : categoryValue, title : titleValue, content : contentValue}) 
+        if (data.state === 200) {
+            // params : 리소스 종류 분류, 카테고리 등
+            // 쿼리스트링 : 검색 조건
+            location.href="/board/list/"+ categoryValue;
+        }
+    }
+</script>
+</html>

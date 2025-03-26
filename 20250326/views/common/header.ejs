@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="/public/style.css">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<ul class = "header">
+    <li>
+        <a href="/">Home</a>
+    </li>
+    <li class = "is-login">
+        <a href="/user/login">Login</a>
+    </li>
+    <li class = "is-login">
+        <a href="/user/signup">Signup</a>
+    </li>
+    <li class = "is-category">
+        <a href="/admin/category">Category</a>
+    </li>
+    <li >
+        <a href="/board">Board</a>
+    </li>
+    <li class = "login_icon">
+        <a href="/user/logout"> 로그아웃</a>       
+        <div> <span class = "user_name"></span>님 안녕하세요</div>
+    </li>
+</ul>
+<script>
+    // 로그인 하면 헤더에 로그인 영역 사라지도록 돔제어
+    const verify = async () => {
+        // 로딩창 활성화
+        const {data} = await axios.get("/user/userVerify");
+        // 로딩창 비활성화
+        console.log(data);
+        if(data.state !== 200) return;
+        const header = document.querySelector('.header');
+        const header_li = header.querySelectorAll('.is-login');
+        const login_icon = document.querySelector(".login_icon")
+        const login_icon_name = login_icon.querySelector(".user_name")
+        console.log(header_li);
+        header_li.forEach((el,index) => {
+            el.classList.add('display_none')
+        })
+        login_icon.classList.add("active");
+        login_icon_name.innerHTML = data.data.user.name;
+        if(data.data.user.grade === 2){
+            document.querySelector(".is-category").classList.add("active");
+        }
+    }
+    window.onload = verify;
+
+    verify();
+</script>

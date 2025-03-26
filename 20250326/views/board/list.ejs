@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 목록</title>
+</head>
+<body>
+    <%- include("../common/header") %>
+    <% if(data) { %>
+        <ul>
+            <% for (let i = 0; i < data.length; i ++) { %>    
+                <li>
+                    <span><%= data[i].title %></span>
+                    <span><%= data[i].content %></span>
+                    <span><%= data[i].user %></span>
+                </li>
+            <% } %>    
+        </ul>
+    <% }else { %>
+        <span>데이터 없음</span>
+    <% } %>
+</body>
+</html>

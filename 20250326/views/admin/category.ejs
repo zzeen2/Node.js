@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카테고리 추가</title>
+</head>
+<body>
+    <%- include("../common/header") %>
+    <% if(data) { %>
+        <ul>
+            <% for(let i =0; i<data.length; i++) { %>
+                <li><%= i+1 %>번 카테고리<%= data[i].name %></li>
+            <% } %>
+        </ul>
+        <div>데이터 있음</div>
+    <% } %>
+    <form id ="category_form">
+        <label for="">카테고리 이름</label>
+        <input type="text" name ="category">
+        <button>카테고리 등록</button>
+    </form>
+</body>
+<script>
+    console.log(data);
+    category_form.onsubmit= async (e) => {
+        e.preventDefault();
+        const {category : {value}} = e.target;
+        const data = await axios.post("/category/create", { name : value })
+        if (data.state === 200){
+            location.reload();
+        }
+    }
+</script>
+</html>
