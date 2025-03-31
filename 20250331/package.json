@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "ws": "^8.18.1"
+  },
+  "name": "20250331",
+  "version": "1.0.0",
+  "description": "## 소켓 > 소켓은 인터넷상에서 즉 네트워크에서 통신하는 역할을 도와주는 개념 > 데이터를 받는 역할 > ip주소, 포트번호 연결을 시도한다. 데이터를 받을 수 있다. > 소켓은 컴퓨터에서 데이터를 주고받을때 연결 속성을 가지고 있다. > ip주소와 포트번호를 가지고 데이터를 받을 수 있다.",
+  "main": "server.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동물카톡</title>
+    <!-- 서버가 호스트 -->
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<style>
+    body{
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    .content{
+        width: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 500px;
+        border : 1px solid;
+    }
+    #login{
+        width: 300px;
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position : absolute;
+    }
+
+    .center {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #chat {
+        display: none;
+    }
+    #send {
+        position: fixed;
+        bottom : 0;
+        left:0;
+        width: 100%;
+        border: 1px solid;
+        box-sizing: border-box;
+        display: flex;
+    }
+
+    #send #msgInput{
+        border: 0;
+        box-sizing: border-box;
+        padding: 3px 6px;
+        width: 80%;
+    }
+
+    #send #sendBtn {
+        background-color: yellow;
+        border: none;
+        box-sizing: border-box;
+        padding: 10px;
+        width: 20%;
+    }
+</style>
+<body>
+    <div class = "content center">
+        <div id = "login" class="center">
+            <h1>로그인</h1>
+            <input type="text" id = "username">
+            <button id = "loginBtn">접속</button>
+        </div>
+        <div id = "chat">
+            <select name="" id="rooms">
+                <option value="병아리">병아리방 </option>
+                <option value="꼬막이">꼬막이방 </option>
+                <option value="떵이">떵이방 </option>
+            </select>
+            <ul id = "message"></ul>
+                <div id = "send">
+                    <input type="text" id = "msgInput">
+                    <div id = "sendBtn">보내기</div>
+                </div>
+        </div>
+    </div>
+    <div id = "sendWhisper">
+        <label for="">클라이언트의 id</label>
+        <input type="text" id = "clientId">
+        <label for=""> 내용 </label>
+        <input type="text" id = "whisperMessage">
+        <button id = "whisperBtn">귓속말 보내기</button>
+        
+    </div>
+    <div>
+        유저목록
+        <ul id = "userList">
+        </ul>
+    </div>
+</body>
+<script>
+    // 웹소켓 socket.io 객체가 생성된다.
+    // io 객체는 socket.io.js에서 생성되고, 호출해서 사용
+    // 소켓을 하나 만들었어. 이후에는 생성이 되면 안됨
+    // 상호작용 했을때 연결이 되어야한다. 디자인 패턴 `싱글톤` 패턴
+    // 인스턴스가 하나만 생성되어야한다.
+
+    // 임시 db
+    let socket = null;
+    let room = "";
+    let name = "";
+
+    loginBtn.onclick = () => {
+        if (socket) return
+        socket = io.connect();
+        login.style.display ="none"
+        chat.style.display = "block"
+
+        // 최초 로그인시 들어갈 방 
+        name = username.value;
+        room = rooms.value;
+        console.log(name, room);
+        socket.emit("joinRoom", room, name)
+
+        // 서버에서 emit로 호출한걸 data 에 키값을 받아서 호출받음
+        socket.on("whisper", (data)=> {
+            console.log("데이터 받음")
+            console.dir(data);
+            alert(data);
+        });
+
+        socket.on("joinRoom", (room, name) => {
+            console.log("222", room, name)
+            const li = document.createElement("li");
+            li.classList.add("join-text")
+            li.innerHTML = `${room}에 ${name}이 입장했어요~`
+            message.append(li);
+        })
+
+        socket.on("leaveRoom", (room, name) => {
+            const li = document.createElement('li');
+            li.classList.add('leave-text');
+            li.innerHTML = `${room}에 ${name}이 나갔어요 ㅠㅠ`
+            message.append(li);
+        })
+        socket.on("chat", (name, msg) =>{
+            const li = document.createElement('li');
+            li.classList.add("msg-text");
+            li.innerHTML = `${name} : ${msg}`
+            message.append(li);
+        })
+        socket.on("userConnect", ()=> {
+            userList.innerHTML += "";
+            users.forEach(el => {
+                userList.innerHTML += `${el},`
+                
+            });
+        })
+    }
+
+
+    whisperBtn.onclick = () =>{
+        const {value : clientIdValue} = clientId;   
+        const {value : whisperMessageValue} = whisperMessage;
+        if(!socket) return;
+        // 서버한테 호출할 이벤트 보내줄거야
+        socket.emit("whisper", {msg : whisperMessageValue, id :clientIdValue })
+    }
+
+    rooms.onchange = (e) => {
+        console.log(e.target.value);
+        if(!socket) return;
+        // 이전방에서 이탈 
+        socket.emit('leaveRoom', room, name);
+        // 새로운 방에 입장
+        room = e.target.value;
+        socket.emit('joinRoom', e.target.value, name)
+
+    }
+
+    sendBtn.onclick = () => {
+        socket.emit('chat', room, name, msgInput.value);
+        msgInput.value = "";
+    }
+</script>
+</html>

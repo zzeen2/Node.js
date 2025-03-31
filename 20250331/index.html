@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #users_wrap {
+            position: fixed;
+            right : 0;
+            top : 0;
+            background-color: rgba(0,0,0, 0.3);
+            padding: 3px 6px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>채팅창</div>
+    <div id = "chat">
+
+    </div>
+    <div>
+        <label for=""> 채팅 입력</label>
+        <input type="text" id = "chatText">
+        <button id = "chatSubmit">채팅 보내기</button>
+    </div>
+
+    <div id = "user_nick_wrap">
+        유저로그인
+        <label for="">닉네임</label>
+        <input type="text" id="user_nick">
+        <button id = "user_nick_btn">로그인하기</button>
+    </div>
+    <div id = "users_wrap">
+        유저목록
+        <ul id = users>
+
+        </ul>
+    </div>
+</body>
+<script>
+    let username = "";
+    // http 요청을 보내고 웹소켓 프로토콜로 업그레이드
+    // 자바스크립트에서 제공하는 클래스
+    const socket = new WebSocket('ws://localhost:3000');
+
+    // socket 서버 주소와 서버에 요청을 보낼 수 있는 메서드 제공
+    // 소켓 요청 메세지
+    chatSubmit.onclick = () => {
+        const {value} = chatText;
+        // send : 웹소켓 객체의 메서드 ( express랑 똑같이 보면 안됨, 데이터를 보낼때 자주 사용되는 메서드 명 )
+        socket.send(value);
+    }
+    //socket에 이벤트가 발생한 경우 즉 서버에서 요청 데이터를 보낸 경우
+
+    socket.addEventListener('message', (event)=> {
+        //console.log(event.data); 
+        // 채팅 모든 클라이언트에게 보여주기
+        //chat.innerHTML += `<div>${event.data}<div/>`
+        const data = JSON.parse(event.data);
+        const {type, content} = data;
+        if(type === "users"){
+            console.log(content);
+            users.innerHTML += `<li>${content}<li/>`
+        }
+    })
+
+    user_nick_btn.onclick = () => {
+        if(username === ""){
+            const {value} = user_nick;
+            username = value;
+            socket.send(JSON.stringify({type : "user_login", username : value}));
+            user_nick_wrap.style.display = "none";
+        }
+    }
+    
+</script>
+</html>
